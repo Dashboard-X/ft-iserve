@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[Message]
+    ADD CONSTRAINT [FK_Message_User] FOREIGN KEY ([FromUserID]) REFERENCES [dbo].[User] ([ID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

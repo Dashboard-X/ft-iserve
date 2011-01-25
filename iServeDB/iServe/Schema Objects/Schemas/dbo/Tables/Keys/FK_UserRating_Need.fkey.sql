@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[UserRating]
+    ADD CONSTRAINT [FK_UserRating_Need] FOREIGN KEY ([NeedID]) REFERENCES [dbo].[Need] ([ID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
