@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="iServe" Class="iServeDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="data source=DEVDB.DEV.CORP.LOCAL,65316;initial catalog=iServe;Integrated Security=true;" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="iServeConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.UserNeedStatus" Member="UserNeedStatuses">
+    <Type Name="UserNeedStatus">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Storage="Name" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="UserNeedStatus_UserNeed" Member="UserNeeds" ThisKey="ID" OtherKey="UserNeedStatusID" Type="UserNeed" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRatingRole" Member="UserRatingRoles">
+    <Type Name="UserRatingRole">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Storage="Name" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="UserRatingRole_UserRating" Member="UserRatings" ThisKey="ID" OtherKey="UserRatingRoleID" Type="UserRating" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRatingValue" Member="UserRatingValues">
+    <Type Name="UserRatingValue">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Storage="Name" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Value" Storage="Value" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="UserRatingValue_UserRating" Member="UserRatings" ThisKey="ID" OtherKey="UserRatingValueID" Type="UserRating" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserStatus" Member="UserStatuses">
+    <Type Name="UserStatus">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Storage="Name" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="UserStatus_User" Member="Users" ThisKey="ID" OtherKey="UserStatusID" Type="User" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Need" Member="Needs">
+    <Type Name="Need">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ChurchID" Storage="ChurchID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CategoryID" Storage="CategoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="SubmittedByID" Storage="SubmittedByID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Name" Storage="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Description" Storage="Description" Type="System.String" DbType="NVarChar(3000)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="RequiredDate" Storage="RequiredDate" Type="System.DateTime" DbType="DateTime" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IsRequiredOnDate" Storage="IsRequiredOnDate" Type="System.Boolean" DbType="Bit NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="PostalCode" Storage="PostalCode" Type="System.String" DbType="VarChar(11)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ImageName" Storage="ImageName" Type="System.String" DbType="VarChar(80)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="HelpersNeeded" Storage="HelpersNeeded" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="NeedStatusID" Storage="NeedStatusID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Created" Storage="Created" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedBy" Storage="CreatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Updated" Storage="Updated" Type="System.DateTime" DbType="DateTime" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UpdatedBy" Storage="UpdatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Category_Need" Member="Category" ThisKey="CategoryID" OtherKey="ID" Type="Category" IsForeignKey="true" />
+      <Association Name="NeedStatus_Need" Member="NeedStatus" ThisKey="NeedStatusID" OtherKey="ID" Type="NeedStatus" IsForeignKey="true" />
+      <Association Name="User_Need" Member="User" ThisKey="SubmittedByID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="Need_Message" Member="Messages" ThisKey="ID" OtherKey="NeedID" Type="Message" IsForeignKey="false" />
+      <Association Name="Need_UserNeed" Member="UserNeeds" ThisKey="ID" OtherKey="NeedID" Type="UserNeed" IsForeignKey="false" />
+      <Association Name="Need_UserRating" Member="UserRatings" ThisKey="ID" OtherKey="NeedID" Type="UserRating" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Category" Member="Categorys">
+    <Type Name="Category">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Storage="Name" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Category_Need" Member="Needs" ThisKey="ID" OtherKey="CategoryID" Type="Need" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NeedStatus" Member="NeedStatuses">
+    <Type Name="NeedStatus">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Storage="Name" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="NeedStatus_Need" Member="Needs" ThisKey="ID" OtherKey="NeedStatusID" Type="Need" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="ChurchID" Storage="ChurchID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Name" Storage="Name" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Rating" Storage="Rating" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Email" Storage="Email" Type="System.String" DbType="VarChar(80)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IsModerator" Storage="IsModerator" Type="System.Boolean" DbType="Bit NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UserStatusID" Storage="UserStatusID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="AccessToken" Storage="AccessToken" Type="System.String" DbType="VarChar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="AccessTokenSecret" Storage="AccessTokenSecret" Type="System.String" DbType="VarChar(50)" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Created" Storage="Created" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedBy" Storage="CreatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Updated" Storage="Updated" Type="System.DateTime" DbType="DateTime" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UpdatedBy" Storage="UpdatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="UserStatus_User" Member="UserStatus" ThisKey="UserStatusID" OtherKey="ID" Type="UserStatus" IsForeignKey="true" />
+      <Association Name="User_Message" Member="Messages" ThisKey="ID" OtherKey="FromUserID" Type="Message" IsForeignKey="false" />
+      <Association Name="User_Message1" Member="ToUserIDMessages" ThisKey="ID" OtherKey="ToUserID" Type="Message" IsForeignKey="false" />
+      <Association Name="User_Need" Member="Needs" ThisKey="ID" OtherKey="SubmittedByID" Type="Need" IsForeignKey="false" />
+      <Association Name="User_UserNeed" Member="UserNeeds" ThisKey="ID" OtherKey="UserID" Type="UserNeed" IsForeignKey="false" />
+      <Association Name="User_UserRating" Member="UserRatings" ThisKey="ID" OtherKey="UserID" Type="UserRating" IsForeignKey="false" />
+      <Association Name="User_UserRating1" Member="RatedByIDUserRatings" ThisKey="ID" OtherKey="RatedByID" Type="UserRating" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Message" Member="Messages">
+    <Type Name="Message">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ChurchID" Storage="ChurchID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="NeedID" Storage="NeedID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Body" Storage="Body" Type="System.String" DbType="NVarChar(3900) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="FromUserID" Storage="FromUserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="ToUserID" Storage="ToUserID" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Created" Storage="Created" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedBy" Storage="CreatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Updated" Storage="Updated" Type="System.DateTime" DbType="DateTime" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UpdatedBy" Storage="UpdatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Need_Message" Member="Need" ThisKey="NeedID" OtherKey="ID" Type="Need" IsForeignKey="true" />
+      <Association Name="User_Message" Member="User" ThisKey="FromUserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="User_Message1" Member="ToUserIDUser" ThisKey="ToUserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserNeed" Member="UserNeeds">
+    <Type Name="UserNeed">
+      <Column Name="UserID" Storage="UserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="NeedID" Storage="NeedID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="false" CanBeNull="false" />
+      <Column Name="UserNeedStatusID" Storage="UserNeedStatusID" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IsSubscribed" Storage="IsSubscribed" Type="System.Boolean" DbType="Bit NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="HasBeenRated" Storage="HasBeenRated" Type="System.Boolean" DbType="Bit NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="HasRatedSubmitter" Storage="HasRatedSubmitter" Type="System.Boolean" DbType="Bit NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Created" Storage="Created" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedBy" Storage="CreatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Updated" Storage="Updated" Type="System.DateTime" DbType="DateTime" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UpdatedBy" Storage="UpdatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="UserNeedStatus_UserNeed" Member="UserNeedStatus" ThisKey="UserNeedStatusID" OtherKey="ID" Type="UserNeedStatus" IsForeignKey="true" />
+      <Association Name="Need_UserNeed" Member="Need" ThisKey="NeedID" OtherKey="ID" Type="Need" IsForeignKey="true" />
+      <Association Name="User_UserNeed" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserRating" Member="UserRatings">
+    <Type Name="UserRating">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ChurchID" Storage="ChurchID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UserID" Storage="UserID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="NeedID" Storage="NeedID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="RatedByID" Storage="RatedByID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UserRatingRoleID" Storage="UserRatingRoleID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="UserRatingValueID" Storage="UserRatingValueID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Created" Storage="Created" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="CreatedBy" Storage="CreatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Updated" Storage="Updated" Type="System.DateTime" DbType="DateTime" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UpdatedBy" Storage="UpdatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="UserRatingRole_UserRating" Member="UserRatingRole" ThisKey="UserRatingRoleID" OtherKey="ID" Type="UserRatingRole" IsForeignKey="true" />
+      <Association Name="UserRatingValue_UserRating" Member="UserRatingValue" ThisKey="UserRatingValueID" OtherKey="ID" Type="UserRatingValue" IsForeignKey="true" />
+      <Association Name="Need_UserRating" Member="Need" ThisKey="NeedID" OtherKey="ID" Type="Need" IsForeignKey="true" />
+      <Association Name="User_UserRating" Member="User" ThisKey="UserID" OtherKey="ID" Type="User" IsForeignKey="true" />
+      <Association Name="User_UserRating1" Member="RatedByIDUser" ThisKey="RatedByID" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ConfigSetting" Member="ConfigSettings">
+    <Type Name="ConfigSetting">
+      <Column Name="ID" Storage="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Storage="Name" Type="System.String" DbType="VarChar(100) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Value" Storage="Value" Type="System.String" DbType="VarChar(500) NOT NULL" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Created" Storage="Created" Type="System.DateTime" DbType="DateTime" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreatedBy" Storage="CreatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Updated" Storage="Updated" Type="System.DateTime" DbType="DateTime" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UpdatedBy" Storage="UpdatedBy" Type="System.Int32" DbType="Int" IsPrimaryKey="false" IsDbGenerated="false" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Function Name="dbo.CompleteNeed" Method="CompleteNeed">
+    <Parameter Name="needID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.CancelNeed" Method="CancelNeed">
+    <Parameter Name="needID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetNeedInfoByHelper" Method="GetNeedInfoByHelper">
+    <Parameter Name="userID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="churchID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetNeedInfoByHelperResult">
+      <Column Name="NeedID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="NeedName" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="nvarchar(3000)" CanBeNull="true" />
+      <Column Name="SubmittedByID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="ChurchID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="IsRequiredOnDate" Type="System.Boolean" DbType="bit NOT NULL" CanBeNull="false" />
+      <Column Name="RequiredDate" Type="System.DateTime" DbType="datetime" CanBeNull="true" />
+      <Column Name="NeedStatusID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="HelpersNeeded" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="ImageName" Type="System.String" DbType="varchar(80)" CanBeNull="true" />
+      <Column Name="UserName" Type="System.String" DbType="nvarchar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Rating" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="UserNeedStatusID" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="IsSubscribed" Type="System.Boolean" DbType="bit NOT NULL" CanBeNull="false" />
+      <Column Name="HasBeenRated" Type="System.Boolean" DbType="bit NOT NULL" CanBeNull="false" />
+      <Column Name="HasRatedSubmitter" Type="System.Boolean" DbType="bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanRate" Type="System.Boolean" DbType="bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetNeedHelpersByStatus" Method="GetNeedHelpersByStatus">
+    <Parameter Name="needID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="userNeedStatusID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="churchID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetNeedHelpersByStatusResult">
+      <Column Name="UserID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="nvarchar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ChurchID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="Rating" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="varchar(80)" CanBeNull="true" />
+      <Column Name="UserStatusID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="UserNeedStatusID" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="IsSubscribed" Type="System.Boolean" DbType="bit NOT NULL" CanBeNull="false" />
+      <Column Name="HasBeenRated" Type="System.Boolean" DbType="bit NOT NULL" CanBeNull="false" />
+      <Column Name="HasRatedSubmitter" Type="System.Boolean" DbType="bit NOT NULL" CanBeNull="false" />
+      <Column Name="NeedID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetInvolvementCounts" Method="GetInvolvementCounts">
+    <Parameter Name="needIDs" Type="System.String" DbType="VarChar(8000)" />
+    <ElementType Name="GetInvolvementCountsResult">
+      <Column Name="NeedID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="Interested" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="Accepted" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="Committed" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="SubmitterDeclined" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="HelperDeclined" Type="System.Int32" DbType="int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.TestProc" Method="TestProc">
+    <Parameter Name="churchID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="userID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="pageNumber" Type="System.Int32" DbType="Int" />
+    <Parameter Name="recordsPerPage" Type="System.Int32" DbType="Int" />
+    <Parameter Name="orderBy" Type="System.String" DbType="VarChar(300)" />
+    <Parameter Name="asc" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="rowCount" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="TestProcResult">
+      <Column Name="ID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="ChurchID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="SubmittedByID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="nvarchar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="nvarchar(3000)" CanBeNull="true" />
+      <Column Name="RequiredDate" Type="System.DateTime" DbType="datetime" CanBeNull="true" />
+      <Column Name="IsRequiredOnDate" Type="System.Boolean" DbType="bit NOT NULL" CanBeNull="false" />
+      <Column Name="PostalCode" Type="System.String" DbType="varchar(11)" CanBeNull="true" />
+      <Column Name="ImageName" Type="System.String" DbType="varchar(80)" CanBeNull="true" />
+      <Column Name="HelpersNeeded" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="NeedStatusID" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="Created" Type="System.DateTime" DbType="datetime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedBy" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="Updated" Type="System.DateTime" DbType="datetime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Int32" DbType="int" CanBeNull="true" />
+      <Column Name="Interested" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="Accepted" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="Committed" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="SubmitterDeclined" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+      <Column Name="HelperDeclined" Type="System.Int32" DbType="int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>
