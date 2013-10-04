@@ -1,0 +1,4 @@
+ft-iserve
+=========
+
+We’ve developed a “Needs board” application that allows church members (anyone with a WebLink login) to post needs and search needs to minister to each other. There is a tremendous need for a technical tool that can direct member’s willingness to serve to the valid needs of others. While several tools have attempted to provide this functionality, none have taken advantage of the tried-and-true community self-monitoring patterns established by services such as ebay. We’ve implemented a double opt-in system - the need submitter has to “Accept” a helper’s willingness to help, and the helper has to then “Commit”. Both the submitter and the committed helpers can then rate each other to curb service abuses once the need has been met or the due date expired. It completely leverages WebLink logins for authentication, and it contains a fully functional user profile editor.
